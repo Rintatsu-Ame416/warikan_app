@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>自由制作.幹事様専用割り勘アプリ</title>
+	</head>
+	<body>
+		<h1>割り勘アプリ</h1>
+		<p>お客様の人数を入力してください
+			<br>
+			<input id = "input1" type = "text">名様
+		</p>
+		<p>
+			幹事様の人数を入力してください
+			<br>
+			<input id = "input2" type = "text">名様
+			<br>
+		</p>
+		<p>
+			<input id ="inc" type="checkbox" >人数に含む
+			<input id ="not" type="checkbox" >人数に含まない
+		</p>
+		<p>お会計を入力してください
+			<br>
+			<input id = "input3" type = "text">円</p>
+		<p>
+			<button onclick="btn(1);">割り勘</button>
+		</p>
+		<p id = "output1">お会計を表示致します</p>
+		<script>
+			const INPUT1=document.getElementById("input1");
+			const INPUT2=document.getElementById("input2");
+			const INPUT3=document.getElementById("input3");
+			var CHECK1=document.getElementById("inc");
+			var CHECK2=document.getElementById("not");
+			const OUTPUT1=document.getElementById("output1");
+			
+			function confirmChecked(){
+				var c1 = document.getElementById("inc");
+				var c2 = document.getElementById("not");
+				if(c1 == true){
+					document.getElementById("not").checked = false;
+				}else if(c2 == true){
+					document.getElementById("inc").checked = false;
+				}
+				
+			}
+
+			function btn(i){
+				let n1 = Number(INPUT1.value);
+				let n2 = Number(INPUT2.value);
+				let n3 = Number(INPUT3.value);
+				let n4;
+
+				if((n1 == "" && n2 == "")||(n1 == "")){
+					OUTPUT1.innerHTML = "お客様の人数を入力してください";
+				}else if(n3 == ""){
+					OUTPUT1.innerHTML = "お会計を入力してください";
+				}else if(n2 == ""){
+					n2 = 0;
+				}else{
+
+					if(i===1){
+						n4 = n3/(n1+n2);
+						n4 = Math.ceil(n4);
+					}
+					OUTPUT1.innerHTML = "お一人様当たり'"+n4+"円'になります";
+				}
+			}
+		</script>
+
+	</body>
+</html>
